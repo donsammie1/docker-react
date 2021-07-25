@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true sakemu/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-create"
+  env: "Dockercreate-env"
+  bucket_name: "elasticbeanstalk-us-east-1-454298343271"
+  bucket_path: "docker-create"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
